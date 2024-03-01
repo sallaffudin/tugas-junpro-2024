@@ -1,0 +1,59 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f2f2f2;
+  padding: 2rem;
+}
+
+.form-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 2px 1px rgba(0, 122, 255, 0.5);
+}
+
+button {
+  display: block;
+  width: 9%;
+  float: right;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #0b2a92ac;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-left: 2px;
+}
+
+button:hover {
+  background-color: #131313ac;
+}
+
+.error-message {
+  color: red;
+}

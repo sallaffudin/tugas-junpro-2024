@@ -1,0 +1,370 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    background-color: #fff;
+    margin: 75px auto;
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.container button {
+    display: block;
+    width: 15%;
+    float: right;
+    padding: 10px;
+    background-color: #006ee3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 auto 10px auto;
+}
+
+.container button:hover {
+    background-color: #0056b3;
+}
+
+#articles-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#articles-table th,
+#articles-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#articles-table th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#articles-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#articles-table .actions {
+    display: flex;
+}
+
+#articles-table .edit-article,
+#articles-table .delete-article {
+    padding: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+#articles-table .edit-article:hover,
+#articles-table .delete-article:hover {
+    background-color: #0056b3;
+}
+
+#button-edit {
+    background-color: #b7eb0c;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+#button-hapus {
+    background-color: #e70808;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+#button-view {
+    background-color: #321fe3;
+    color: white;
+    border-radius: 100px;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.search-container {
+    position: relative;
+    width: fit-content;
+}
+
+.search-container input[type="text"] {
+    padding-right: 30px;
+    /* adjust as needed */
+}
+
+.search-container .search-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    /* adjust as needed */
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+/* Tambahkan CSS custom di sini */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    width: 200%;
+    border-collapse: collapse;
+    margin-top: -7px;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.view-button {
+    text-align: center;
+}
+
+.view-button a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #8393a5;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.view-button a:hover {
+    background-color: #0056b3;
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-container input[type=text] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.search-container .search-icon {
+    position: absolute;
+    top: 45%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+/* CSS for dropdown */
+.logout-container {
+    text-align: right;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropbtn:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    z-index: 1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 0;
+    right: 0;
+    text-align: left;
+    white-space: nowrap; /* prevent wrapping */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Updated CSS for Logout Button */
+.logout-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.logout-button:hover {
+    background-color: #f1f1f1;
+}
+
+/* CSS for Edit Profile button */
+.edit-profile-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.edit-profile-button:hover {
+    background-color: #f1f1f1;
+}
+
+/* Adjustments for button */
+.dropbtn {
+    padding: 6px 8px; /* Reduce padding */
+    line-height: 1; /* Adjust line height */
+}
+
+.dropbtn .bi {
+    vertical-align: middle; /* Align icon vertically */
+    margin-right: 4px; /* Add margin between icon and text */
+}
+
+body {
+    background-image: url('../../image_background/mobil_background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* CSS for responsiveness */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+        overflow-x: auto; /* Menambahkan overflow-x */
+    }
+
+    table {
+        width: 100%;
+        max-width: 100%; /* Menetapkan lebar maksimal tabel */
+    }
+
+    #articles-table th,
+    #articles-table td {
+        padding: 8px; /* Adjust padding */
+    }
+
+    #articles-table .view-button {
+        text-align: left;
+    }
+
+    .container button {
+        width: 100%;
+        float: none;
+        margin-bottom: 10px;
+    }
+
+    .search-container input[type="text"] {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        padding: 10px;
+        overflow-x: auto; /* Menambahkan overflow-x */
+    }
+
+    table {
+        width: 100%;
+        max-width: 100%; /* Menetapkan lebar maksimal tabel */
+    }
+
+    #articles-table th,
+    #articles-table td {
+        padding: 6px; /* Adjust padding */
+    }
+
+    #articles-table .view-button {
+        text-align: left;
+    }
+
+    .container button {
+        width: 100%;
+        float: none;
+        margin-bottom: 10px;
+    }
+
+    .search-container input[type="text"] {
+        width: 100%;
+    }
+}
