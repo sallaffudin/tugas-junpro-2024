@@ -3,7 +3,6 @@ include('../../config/connection.php');
 
 $name = $username = $email = $password = $confirm_password = "";
 $name_err = $username_err = $email_err = $password_err = $confirm_password_err = "";
-
 $success_message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -76,12 +75,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $updated_at = date('Y-m-d H:i:s');
         $is_admin = 1; // Set nilai is_admin ke 1 untuk pengguna biasa
 
-        // Hash password sebelum menyimpan ke database
+        // Menyiapkan statement SQL untuk dieksekusi
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Menyiapkan statement SQL untuk dieksekusi
-        $sql = "INSERT INTO users (name, username, email, password, created_at, updated_at, is_admin) 
-                VALUES ('$name', '$username', '$email', '$hashed_password', '$created_at', '$updated_at', '$is_admin')";
+        // Menambahkan user dengan status aktif
+        $users_status = 1; // 1 untuk aktif
+        $sql = "INSERT INTO users (name, username, email, password, created_at, updated_at, is_admin, users_status) 
+                VALUES ('$name', '$username', '$email', '$hashed_password', '$created_at', '$updated_at', '$is_admin', '$users_status')";
 
         if ($conn->query($sql) === TRUE) {
             $success_message = "Registrasi berhasil!";
@@ -98,7 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-    <link rel="stylesheet" href="../../assets/css/registrasi.css?v=2.0">
+    <link rel="stylesheet" href="../../assets/css/registrasi.css?v=2.1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <script>
         function validateForm() {
             var password = document.getElementById("password").value;
@@ -157,6 +158,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 document.getElementById("confirm-password-error").textContent = "";
             }
         }
+
+        function togglePasswordVisibility(inputId, iconId) {
+            var input = document.getElementById(inputId);
+            var icon = document.getElementById(iconId);
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            } else {
+                input.type = "password";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+            }
+        }
     </script>
 </head>
 
@@ -169,35 +185,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return validateForm()" novalidate>
             <label for="Name">Name:</label>
             <input type="text" id="Name" name="Name" value="<?php echo htmlspecialchars($name); ?>" oninput="validateName()" required>
-            <br>
             <span class="error" id="name-error"><?php echo $name_err; ?></span>
+            <br>
 
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" oninput="validateUsername()" required>
-            <br>
             <span class="error" id="username-error"><?php echo $username_err; ?></span>
+            <br>
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" oninput="validateEmail()" required>
-            <br>
             <span class="error" id="email-error"><?php echo $email_err; ?></span>
+            <br>
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" oninput="validatePassword()" required>
-            <br>
+            <div style="position: relative;">
+                <input type="password" id="password" name="password" oninput="validatePassword()" required>
+                <i id="togglePassword" class="bi bi-eye-slash" style="position: absolute; right: 10px; top: 42%; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility('password', 'togglePassword')"></i>
+            </div>
             <span class="error" id="password-error"><?php echo $password_err; ?></span>
+            <br>
 
             <label for="confirm-password">Confirm Password:</label>
-            <input type="password" id="confirm-password" name="confirm-password" oninput="validateConfirmPassword()" required>
-            <br>
+            <div style="position: relative;">
+                <input type="password" id="confirm-password" name="confirm-password" oninput="validateConfirmPassword()" required>
+                <i id="toggleConfirmPassword" class="bi bi-eye-slash" style="position: absolute; right: 10px; top: 42%; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility('confirm-password', 'toggleConfirmPassword')"></i>
+            </div>
             <span class="error" id="confirm-password-error"><?php echo $confirm_password_err; ?></span>
+            <br>
 
             <button type="submit">Register</button>
         </form>
 
         <p>Sudah punya akun? <a href="../login/login.php">Login disini</a></p>
     </div>
-
 </body>
 
 </html>

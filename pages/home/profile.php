@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="old_password">Kata Sandi Lama<span style="color: red;">*</span></label>
             <div class="password-container">
                 <input type="password" id="old_password" name="old_password">
-                <i class="bi bi-eye-slash toggle-password" onclick="togglePasswordVisibility('old_password')"></i>
+                <i class="bi bi-eye-slash toggle-password"  onclick="togglePasswordVisibility('old_password')"></i>
                 <span class="error-message" id="oldPasswordError"></span>
             </div>
 

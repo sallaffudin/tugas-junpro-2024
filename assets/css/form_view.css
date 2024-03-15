@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    background-color: #fff;
+    margin: 75px auto;
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-image: url('../../image_background/mobil_background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 100%; /* Change to max-width for responsiveness */
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(254, 3, 3, 0.1);
+    overflow-x: auto; /* Add overflow-x for horizontal scroll if needed */
+}
+
+.title {
+    font-size: 24px; /* Ubah ukuran font sesuai kebutuhan */
+    font-weight: bold; /* Atur tebal font */
+}
+
+.description {
+    font-size: 16px; /* Ubah ukuran font sesuai kebutuhan */
+}
+
+/* Gaya untuk judul kecil dalam deskripsi */
+.description strong {
+    font-weight: bold; /* Atur tebal font */
+}
+
+
+/* CSS for responsiveness */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+        overflow-x: auto; /* Menambahkan overflow-x */
+    }
+
+    table {
+        width: 100%;
+        max-width: 100%; /* Menetapkan lebar maksimal tabel */
+    }
+
+    #articles-table th,
+    #articles-table td {
+        padding: 8px; /* Adjust padding */
+    }
+
+    #articles-table .view-button {
+        text-align: left;
+    }
+
+    .container button {
+        width: 100%;
+        float: none;
+        margin-bottom: 10px;
+    }
+
+    .search-container input[type="text"] {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        padding: 10px;
+        overflow-x: auto; /* Menambahkan overflow-x */
+    }
+
+    table {
+        width: 100%;
+        max-width: 100%; /* Menetapkan lebar maksimal tabel */
+    }
+
+    #articles-table th,
+    #articles-table td {
+        padding: 6px; /* Adjust padding */
+    }
+
+    #articles-table .view-button {
+        text-align: left;
+    }
+
+    .container button {
+        width: 100%;
+        float: none;
+        margin-bottom: 10px;
+    }
+
+    .search-container input[type="text"] {
+        width: 100%;
+    }
+}

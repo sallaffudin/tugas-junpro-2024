@@ -12,6 +12,10 @@ $user = $_SESSION['user'];
 // Terima parameter simpan dari URL
 $simpan = isset($_POST['simpan']) ? $_POST['simpan'] : '';
 
+// Ambil daftar kategori dari database
+$category_query = "SELECT id, judul FROM tugas_junpro.category";
+$category_result = $conn->query($category_query);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
@@ -22,60 +26,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $_POST['date'];
     $date_formatted = date('Y-m-d H:i:s', strtotime($date)); // Mengubah format tanggal menjadi format MySQL
 
-    // Validasi judul artikel dan tanggal
-    if (empty($title) || empty($date)) {
-        echo "<script>alert('Judul artikel dan tanggal wajib diisi');</script>";
+    // Validasi judul artikel, tanggal, dan kategori
+    if (empty($title) || empty($date) || empty($_POST['category'])) {
+        echo "<script>alert('Judul artikel, tanggal, dan kategori wajib diisi');</script>";
         exit();
     }
 
+    $category_id = $_POST['category']; // Ambil ID kategori yang dipilih
+
     // Code for file upload
-    $targetDirectory = "../../uploads/"; // Update path
-    $targetFile = $targetDirectory . basename($_FILES["hero-image"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    if ($_FILES["hero-image"]["error"] == 0) {
+        $targetDirectory = "../../uploads/";
+        $targetFile = $targetDirectory . basename($_FILES["hero-image"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-    // Check file size
-    if ($_FILES["hero-image"]["size"] > 2000000) { // Ubah ukuran maksimum menjadi 2MB
-        echo "<script>alert('Sorry, your file is too large. Maximum file size is 2MB.');</script>";
-        $uploadOk = 0;
-    }
+        // Check file size
+        if ($_FILES["hero-image"]["size"] > 2000000) {
+            echo "<script>alert('Sorry, your file is too large. Maximum file size is 2MB.');</script>";
+            $uploadOk = 0;
+        }
 
-    // Allow certain file formats
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        echo "<script>alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.');</script>";
-        $uploadOk = 0;
-    }
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+            echo "<script>alert('Sorry, only JPG, JPEG, PNG & GIF files are allowed.');</script>";
+            $uploadOk = 0;
+        }
 
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "<script>alert('Sorry, your file was not uploaded.');</script>";
-        // if everything is ok, try to upload file
+        if ($uploadOk == 1) {
+            if (move_uploaded_file($_FILES["hero-image"]["tmp_name"], $targetFile)) {
+                // File berhasil diunggah, lanjutkan dengan penyimpanan ke database
+                $image_path = $targetFile;
+
+                // SQL query to insert data
+                $sql = "INSERT INTO tugas_junpro.article (title, description, author, created_at, image, category_id) VALUES (
+                    '$title',
+                    '$description',
+                    '$author',
+                    '$date_formatted',
+                    '$image_path',
+                    '$category_id'
+                )";
+
+                if ($conn->query($sql) === TRUE) {
+                    // Redirect ke halaman indeks setelah berhasil disimpan dengan parameter simpan
+                    header("Location: index.php?simpan=1");
+                    exit();
+                } else {
+                    // Tampilkan pesan error jika ada masalah dengan eksekusi query SQL
+                    echo "Error: " . $conn->error;
+                }
+            } else {
+                echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
+            }
+        }
     } else {
-        if (move_uploaded_file($_FILES["hero-image"]["tmp_name"], $targetFile)) {
-            // echo "<script>alert('The file " . htmlspecialchars(basename($_FILES["hero-image"]["name"])) . " has been uploaded.');</script>"; // Hapus notifikasi upload
-        } else {
-            echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
-        }
-    }
-
-    if ($uploadOk == 1) {
-        // SQL query to insert data
-        $sql = "INSERT INTO tugas_junpro.article (title, description, author, created_at, image) VALUES (
-            '$title',
-            '$description',
-            '$author',
-            '$date_formatted',
-            '$targetFile'
-        )";
-
-        if ($conn->query($sql) === TRUE) {
-            // Redirect ke halaman indeks setelah berhasil disimpan dengan parameter simpan
-            header("Location: index.php?simpan=1");
-            exit();
-        } else {
-            // Tampilkan pesan error jika ada masalah dengan eksekusi query SQL
-            echo "Error: " . $conn->error;
-        }
+        echo "<script>alert('No file was uploaded.');</script>";
     }
 }
 ?>
@@ -84,11 +90,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-    <link rel="stylesheet" href="../../assets/css/form.css?v=2.0">
+    <link rel="stylesheet" href="../../assets/css/form.css?v=1.1">
 </head>
 
 <body>
     <form id="article-form" method="POST" enctype="multipart/form-data">
+        <!-- Form group for other fields -->
+        <h1>Buat Artikel Baru</h1>
         <div class="form-group">
             <label for="title">Judul Artikel:</label>
             <input type="text" id="title" name="title" required>
@@ -105,6 +113,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div id="image-error" class="error-message"></div> <!-- Pesan kesalahan -->
         </div>
         <div class="form-group">
+            <label for="category">Kategori:</label>
+            <select id="category" name="category" required>
+                <option value="" disabled selected>Pilih Kategori</option>
+                <?php while ($category = $category_result->fetch_assoc()) { ?>
+                    <option value="<?php echo $category['id']; ?>"><?php echo $category['judul']; ?></option>
+                <?php } ?>
+            </select>
+            <div id="category-error" class="error-message"></div> <!-- Pesan kesalahan -->
+        </div>
+        <div class="form-group">
             <label for="description">Deskripsi:</label>
             <textarea id="description" name="description" rows="4" cols="50" required></textarea>
             <div id="description-error" class="error-message"></div> <!-- Pesan kesalahan -->
@@ -113,6 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" id="submit-button">Simpan</button> <!-- Tombol submit -->
             <a href="index.php"><button type="button">Back</button></a>
         </div>
+        <!-- End of form group for other fields -->
     </form>
 
     <script>

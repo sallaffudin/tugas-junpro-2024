@@ -12,16 +12,11 @@ body {
 .container {
     width: 80%;
     background-color: #fff;
-    margin: 75px auto;
+    margin: 75px auto;  
     padding: 25px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.container h1 {
-    text-align: center;
-    margin-bottom: 25px;
 }
 
 .container button {
@@ -29,7 +24,7 @@ body {
     width: 15%;
     float: right;
     padding: 10px;
-    background-color: #006ee3;
+    background-color: #0c71ff;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -37,48 +32,15 @@ body {
     margin: 0 auto 10px auto;
 }
 
-.container button:hover {
-    background-color: #0056b3;
-}
-
-#articles-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
 #articles-table th,
 #articles-table td {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
 }
 
 #articles-table th {
-    background-color: #007bff;
-    color: #fff;
-}
-
-#articles-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-#articles-table .actions {
-    display: flex;
-}
-
-#articles-table .edit-article,
-#articles-table .delete-article {
-    padding: 5px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-#articles-table .edit-article:hover,
-#articles-table .delete-article:hover {
-    background-color: #0056b3;
+    background-color: #0c71ff;
+    color: #000000;
 }
 
 #button-edit {
@@ -116,36 +78,6 @@ body {
     width: fit-content;
 }
 
-.search-container input[type="text"] {
-    padding-right: 30px;
-    /* adjust as needed */
-}
-
-.search-container .search-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    /* adjust as needed */
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
-/* Tambahkan CSS custom di sini */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-.container {
-    max-width: 1500px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
 h1 {
     text-align: center;
@@ -164,31 +96,6 @@ td {
     border-bottom: 1px solid #ddd;
 }
 
-th {
-    background-color: #f2f2f2;
-}
-
-.view-button {
-    text-align: center;
-}
-
-.view-button a {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #8393a5;
-    color: #fff;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-.view-button a:hover {
-    background-color: #0056b3;
-}
-
-.search-container {
-    position: relative;
-}
-
 .search-container input[type=text] {
     width: 100%;
     padding: 10px;
@@ -196,14 +103,6 @@ th {
     border-radius: 5px;
     border: 1px solid #ccc;
     box-sizing: border-box;
-}
-
-.search-container .search-icon {
-    position: absolute;
-    top: 45%;
-    right: 10px;
-    transform: translateY(-50%);
-    color: #aaa;
 }
 
 /* CSS for dropdown */
@@ -214,20 +113,6 @@ th {
 .dropdown {
     position: relative;
     display: inline-block;
-}
-
-.dropbtn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: black;
-    padding: 8px 12px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropbtn:hover {
-    background-color: #f1f1f1;
 }
 
 .dropdown-content {
@@ -243,21 +128,6 @@ th {
     white-space: nowrap; /* prevent wrapping */
 }
 
-.dropdown-content a {
-    color: black;
-    padding: 8px 12px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 /* Updated CSS for Logout Button */
 .logout-button {
     background-color: transparent;
@@ -267,10 +137,6 @@ th {
     padding: 8px 12px;
     text-decoration: none;
     display: block;
-}
-
-.logout-button:hover {
-    background-color: #f1f1f1;
 }
 
 /* CSS for Edit Profile button */
@@ -284,9 +150,22 @@ th {
     display: block;
 }
 
-.edit-profile-button:hover {
-    background-color: #f1f1f1;
-}
+.btn-group a {
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+  }
+  
+  .btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+  }
+  
+  /* Clear floats (clearfix hack) */
+  .btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 
 /* Adjustments for button */
 .dropbtn {
@@ -299,4 +178,147 @@ th {
     margin-right: 4px; /* Add margin between icon and text */
 }
 
+#add-article-btn {
+    background-color: #28a745; /* Warna hijau untuk tombol "Add" */
+}
+
+#user-btn {
+    background-color: #dc3545; /* Warna merah untuk tombol "User" */
+}
+
+#add-article-btn,
+#user-btn {
+    display: block;
+    width: 10%;
+    float: right;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    margin: 0 auto 10px auto;
+    margin-right: 10px;
+}
+
+#add-article-btn:hover,
+#user-btn:hover {
+    opacity: 0.8; /* Efek transparansi saat tombol dihover */
+}
+
+/* Menggunakan gambar latar belakang dari folder image_background */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('../../image_background/mobil_background.jpg'); /* Sesuaikan nama file dan lokasi folder */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; /* Agar gambar latar tetap saat menggulir halaman */
+}
+
+.container {
+    max-width: 100%; /* Change to max-width for responsiveness */
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(254, 3, 3, 0.1);
+    overflow-x: auto; /* Add overflow-x for horizontal scroll if needed */
+}
+.filter-container {
+    margin-bottom: 20px; /* Menambahkan margin bawah untuk memisahkan filter dari tabel */
+}
+
+.search-container {
+    display: flex;
+    align-items: center; /* Menyelaraskan elemen secara vertikal */
+}
+
+.search-container input,
+.search-container select {
+    display: block;
+    padding: 10px;
+    /* border: 500px; */
+    border-color: #070707;
+    color: #090000;
+    border-radius: 100px;
+    cursor: pointer;
+    margin: 0 auto 10px auto;
+    margin-right: 10px;
+}
+
+.search-container button {
+    padding: 5px 10px; /* Atur ukuran tombol */
+}
+
+.container {
+    margin-top: 20px; /* Menambahkan margin atas untuk memisahkan tabel dari filter */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin-left: 10px;
+}
+
+#dashboard-btn {
+    background-color: #007bff;
+    display: block;
+    width: 10%;
+    float: right;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    margin: 0 auto 10px auto;
+    margin-right: 10px;
+}
+
+#dashboard-btn:hover {
+    background-color: #0056b3;
+}
+
+#category-btn {
+    background-color: #ef00df;
+    display: block;
+    width: 10%;
+    float: right;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    margin: 0 auto 10px auto;
+    margin-right: 10px;
+}
+
+#category-btn:hover {
+    background-color: #0056b3;
+}
+
+/* CSS for responsive action buttons */
+@media screen and (max-width: 768px) {
+    #articles-table .actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around; /* Menyebarkan tombol di sepanjang baris */
+    }
+
+    #articles-table .edit-article,
+    #articles-table .delete-article,
+    #articles-table .view-article {
+        width: calc(33.33% - 10px);
+        margin: 5px;
+    }
+}
 

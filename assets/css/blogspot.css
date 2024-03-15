@@ -57,9 +57,7 @@ body {
     color: #fff;
 }
 
-#articles-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+
 
 #articles-table .actions {
     display: flex;
@@ -79,26 +77,6 @@ body {
 #articles-table .edit-article:hover,
 #articles-table .delete-article:hover {
     background-color: #0056b3;
-}
-
-#button-edit {
-    background-color: #b7eb0c;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    padding: 10px;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-#button-hapus {
-    background-color: #e70808;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    padding: 10px;
-    cursor: pointer;
-    margin-right: 5px;
 }
 
 #button-view {
@@ -129,6 +107,17 @@ body {
     transform: translateY(-50%);
     cursor: pointer;
 }
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin-left: 10px;
+}
+
 
 /* Tambahkan CSS custom di sini */
 body {
@@ -206,104 +195,46 @@ th {
     color: #aaa;
 }
 
-/* CSS for dropdown */
-.logout-container {
-    text-align: right;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: black;
-    padding: 8px 12px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropbtn:hover {
-    background-color: #f1f1f1;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    z-index: 1;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 8px 0;
-    right: 0;
-    text-align: left;
-    white-space: nowrap; /* prevent wrapping */
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 8px 12px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Updated CSS for Logout Button */
-.logout-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: black;
-    padding: 8px 12px;
-    text-decoration: none;
-    display: block;
-}
-
-.logout-button:hover {
-    background-color: #f1f1f1;
-}
-
-/* CSS for Edit Profile button */
-.edit-profile-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: black;
-    padding: 8px 12px;
-    text-decoration: none;
-    display: block;
-}
-
-.edit-profile-button:hover {
-    background-color: #f1f1f1;
-}
-
-/* Adjustments for button */
-.dropbtn {
-    padding: 6px 8px; /* Reduce padding */
-    line-height: 1; /* Adjust line height */
-}
-
-.dropbtn .bi {
-    vertical-align: middle; /* Align icon vertically */
-    margin-right: 4px; /* Add margin between icon and text */
-}
-
 body {
     background-image: url('../../image_background/mobil_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+.container {
+    max-width: 100%; /* Change to max-width for responsiveness */
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(254, 3, 3, 0.1);
+    overflow-x: auto; /* Add overflow-x for horizontal scroll if needed */
+}
+.filter-container {
+    margin-bottom: 20px; /* Menambahkan margin bawah untuk memisahkan filter dari tabel */
+}
+
+.search-container {
+    display: flex;
+    align-items: center; /* Menyelaraskan elemen secara vertikal */
+}
+
+.search-container input,
+.search-container select {
+    display: block;
+    padding: 10px;
+    /* border: 500px; */
+    border-color: #070707;
+    color: #090000;
+    border-radius: 100px;
+    cursor: pointer;
+    margin: 0 auto 10px auto;
+    margin-right: 10px;
+}
+
+.search-container button {
+    padding: 5px 10px; /* Atur ukuran tombol */
 }
 
 /* CSS for responsiveness */

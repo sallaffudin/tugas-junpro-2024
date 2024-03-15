@@ -1,0 +1,246 @@
+/* Style untuk tabel */
+#categories-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#categories-table th,
+#categories-table td {
+    border: 1px solid #050505;
+    padding: 8px;
+    text-align: left;
+}
+
+#categories-table th {
+    background-color: #f2f2f2;
+}
+
+/* Style untuk tombol edit dan hapus */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-buttons a {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.action-buttons a:hover {
+    background-color: #e2e2e2;
+}
+
+/* Style untuk background */
+body {
+    background-image: url('../../image_background/gunung_background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1350px;
+    /* Menetapkan lebar maksimum untuk kontainer */
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Tambahan untuk memberi transparansi pada kontainer */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    /* Untuk menempatkan teks di tengah-tengah */
+    margin: 0 auto;
+    /* Memposisikan kontainer ke tengah */
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+/* Style untuk tombol edit dan hapus */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-buttons a {
+    padding: 5px;
+    text-decoration: none;
+    border-radius: 50%;
+    margin: 0 5px;
+    /* Menambahkan margin agar tombol tidak terlalu jauh berjarak */
+}
+
+/* Warna untuk tombol Edit */
+.action-buttons a.edit {
+    background-color: #b7eb0c;
+    /* Warna untuk tombol Edit */
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+/* Warna untuk tombol Delete */
+.action-buttons a.delete {
+    background-color: #e70808;
+    /* Warna untuk tombol Delete */
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.action-buttons a:hover {
+    opacity: 0.8;
+    /* Efek hover untuk semua tombol */
+}
+
+.action-buttons a:hover .bi {
+    opacity: 1;
+    /* Efek hover untuk ikon */
+}
+
+.search-container {
+    position: relative;
+    width: fit-content;
+}
+
+.search-container input[type=text] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: -10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.back-button {
+    position: absolute;
+    left: 170px;
+    /* Atur jarak dari kiri sesuai kebutuhan */
+    top: 40px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* CSS for Edit Modal */
+.modal {
+    display: none; /* Hide modal by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* Center modal vertically and horizontally */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 400px; /* Set maximum width */
+    position: relative;
+    text-align: center; /* Center text content */
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #aaa;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style form elements */
+.modal-content form label {
+    display: block;
+    margin-bottom: -10px; /* Adjust spacing between label and input */
+    text-align: left; /* Align label text to the left */
+}
+
+.modal-content form input[type="text"],
+.modal-content form input[type="email"],
+.modal-content form input[type="password"],
+.modal-content form select {
+    width: calc(100% - 20px); /* Adjust input width to match container */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Make sure padding and border are included in the element's total width and height */
+}
+
+.modal-content form input[type="submit"] {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-content form input[type="submit"]:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+#addCategoryBtn {
+    background-color: #28a745; /* Warna hijau untuk tombol "Add" */
+}
+
+#user-btn {
+    background-color: #dc3545; /* Warna merah untuk tombol "User" */
+}
+
+#addCategoryBtn,
+#user-btn {
+    display: block;
+    width: 10%;
+    float: right;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    margin: 0 auto 10px auto;
+    margin-right: 10px;
+}
+
+#addCategoryBtn:hover,
+#user-btn:hover {
+    opacity: 0.8; /* Efek transparansi saat tombol dihover */
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin-left: 10px;
+}

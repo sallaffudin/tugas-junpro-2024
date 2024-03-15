@@ -1,0 +1,28 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #1225fc;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #fffffff5;
+  }
+
+  .container {
+    max-width: 1500px; /* Sesuaikan lebar maksimum sesuai kebutuhan */
+    margin: 0 auto; /* Pusatkan konten */
+    padding: 0 15px; /* Tambahkan padding untuk tetap menjaga jarak dari tepi */
+}
+.data-not-found td {
+    text-align: center;
+}
+

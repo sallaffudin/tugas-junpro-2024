@@ -15,10 +15,10 @@ if (count($_POST) > 0) {
 
     // Menggunakan prepared statement untuk mencegah SQL Injection
     $stmt = $conn->prepare("UPDATE article 
-                            SET title=?, description=?, updated_at=?, image=?
+                            SET title=?, description=?, updated_at=?, image=?, category_id=?
                             WHERE id=?");
 
-    $stmt->bind_param("ssssi", $title, $description, $date_now, $image, $article_id);
+    $stmt->bind_param("ssssii", $title, $description, $date_now, $image, $category_id, $article_id);
 
     $title = $_POST['title'];
     $description = $_POST['description'];
@@ -59,6 +59,20 @@ if (count($_POST) > 0) {
         $image = ''; // Set image to empty string if no new image is uploaded
     }
 
+    // Jika kategori tidak diubah, gunakan kategori yang ada
+    if(isset($_POST['category'])) {
+        $category_id = $_POST['category'];
+    } else {
+        // Jika kategori tidak dipilih, gunakan kategori yang ada di artikel saat ini
+        $current_article_query = "SELECT category_id FROM article WHERE id=?";
+        $stmt_current_article = $conn->prepare($current_article_query);
+        $stmt_current_article->bind_param("i", $article_id);
+        $stmt_current_article->execute();
+        $result_current_article = $stmt_current_article->get_result();
+        $row_current_article = $result_current_article->fetch_assoc();
+        $category_id = $row_current_article['category_id'];
+    }
+
     // Execute SQL statement
     if ($stmt->execute()) {
         // Redirect to index.php with simpan parameter set to 1
@@ -73,17 +87,22 @@ if (count($_POST) > 0) {
 $sql = "SELECT * FROM tugas_junpro.article WHERE id = " . $_GET['id'] . " LIMIT 1";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc(); // Ambil data artikel dari hasil query
+
+// Ambil daftar kategori dari database
+$category_query = "SELECT id, judul FROM tugas_junpro.category";
+$category_result = $conn->query($category_query);
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-    <link rel="stylesheet" href="../../assets/css/form.css?v=2.0">
+    <link rel="stylesheet" href="../../assets/css/form.css?v=1.1">
 </head>
 
 <body>
     <form id="article-form" method="POST" enctype="multipart/form-data">
+    <h1>Ubah Artikel</h1>
         <div class="form-group">
             <label for="title">Judul Artikel:</label>
             <input type="text" id="title" name="title" value="<?php echo $row['title']; ?>" required>
@@ -98,6 +117,16 @@ $row = $result->fetch_assoc(); // Ambil data artikel dari hasil query
             <label for="hero-image">Hero Image:</label>
             <input type="file" id="hero-image" name="hero-image" required>
             <div id="image-error" class="error-message"></div> <!-- Pesan kesalahan -->
+        </div>
+        <div class="form-group">
+            <label for="category">Kategori:</label>
+            <select id="category" name="category" required>
+                <option value="" disabled>Pilih Kategori</option>
+                <?php while ($category = $category_result->fetch_assoc()) { ?>
+                    <option value="<?php echo $category['id']; ?>" <?php if ($category['id'] == $row['category_id']) echo 'selected'; ?>><?php echo $category['judul']; ?></option>
+                <?php } ?>
+            </select>
+            <div id="category-error" class="error-message"></div> <!-- Pesan kesalahan -->
         </div>
         <div class="form-group">
             <label for="description">Deskripsi:</label>
@@ -143,9 +172,11 @@ $row = $result->fetch_assoc(); // Ambil data artikel dari hasil query
             var dateError = document.getElementById('date-error');
             var descriptionError = document.getElementById('description-error');
             var imageError = document.getElementById('image-error');
+            var categoryError = document.getElementById('category-error');
             var title = titleInput.value.trim();
             var description = descriptionInput.value.trim();
             var image = document.getElementById('hero-image').value.trim();
+            var category = document.getElementById('category').value.trim();
             var valid = true;
 
             // Validasi judul artikel
@@ -163,6 +194,12 @@ $row = $result->fetch_assoc(); // Ambil data artikel dari hasil query
             // Validasi gambar
             if (image === "") {
                 imageError.textContent = "Gambar wajib dipilih.";
+                valid = false;
+            }
+
+            // Validasi kategori
+            if (category === "") {
+                categoryError.textContent = "Kategori wajib dipilih.";
                 valid = false;
             }
 
